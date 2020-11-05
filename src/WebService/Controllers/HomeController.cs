@@ -28,7 +28,9 @@ namespace WebService.Controllers
 
             this.logger.LogInformation(message);
 
-            return View();
+            User user = new User(current.Name);
+
+            return View(user);
         }
 
         public IActionResult Privacy()
