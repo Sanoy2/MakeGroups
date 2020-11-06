@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebService.Models;
@@ -31,6 +26,12 @@ namespace WebService.Controllers
             User user = new User(current.Name);
 
             return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Register()
+        {
+            return RedirectToAction(nameof(this.Index));
         }
 
         public IActionResult Privacy()
