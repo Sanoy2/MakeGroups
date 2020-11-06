@@ -1,5 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Principal;
+using Domain.Implementations;
+using Domain.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebService.Models;
@@ -23,9 +29,21 @@ namespace WebService.Controllers
 
             this.logger.LogInformation(message);
 
-            User user = new User(current.Name);
+            UserViewModel user = new UserViewModel(current.Name);
 
             return View(user);
+        }
+
+        public IActionResult Teams()
+        {
+            ITeamCreator teamCreator = new TeamCreator();
+            IUsersCollection users = new FakeUsersCollection();
+
+            var teams = teamCreator.Create(users.Get(), 2);
+
+            IEnumerable<TeamViewModel> teamViewModels = teams.Select(x => this.ToTeamViewModel(x));
+
+            return View(teamViewModels);
         }
 
         [HttpPost]
@@ -43,6 +61,26 @@ namespace WebService.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private TeamViewModel ToTeamViewModel(Team team)
+        {
+            var teamViewModel = new TeamViewModel()
+            {
+                Name = team.Name
+            };
+
+            foreach (var user in team.Users)
+            {
+                UserViewModel userViewModel = new UserViewModel()
+                {
+                    Name = user.Name
+                };
+
+                teamViewModel.Users.Add(userViewModel);
+            }
+
+            return teamViewModel;
         }
     }
 }
