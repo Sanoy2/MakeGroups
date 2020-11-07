@@ -1,34 +1,38 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Domain.Implementations
 {
-    public class FakeUsersCollection : IUsersCollection
+    public class InMemoryUsersCollection : IUsersCollection
     {
-        private static HashSet<User> users = new HashSet<User>()
+        private HashSet<User> users;
+
+        public InMemoryUsersCollection()
         {
-            new User("aa\\Ross"),
-            new User("aa\\Joey"),
-            new User("aa\\Chandler"),
-        };
+            this.users = new HashSet<User>();
+        }
 
         public void Add(User user)
         {
+            this.users.Add(user);
         }
 
         public void Clear()
         {
+            this.users = new HashSet<User>();
         }
 
         public IEnumerable<User> Get()
         {
-            return users.ToList();
+            return this.users.ToList();
         }
 
         public void Remove(User user)
         {
+            this.users.Remove(user);
         }
     }
 }

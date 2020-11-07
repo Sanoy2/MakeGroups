@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebService.Models
 {
@@ -11,6 +13,17 @@ namespace WebService.Models
         public TeamViewModel()
         {
             this.Users = new List<UserViewModel>();
+        }
+
+        public static TeamViewModel FromTeam(Team team)
+        {
+            TeamViewModel teamViewModel = new TeamViewModel();
+
+            teamViewModel.Name = team.Name;
+
+            teamViewModel.Users = team.Users.Select(x => UserViewModel.FromUser(x)).ToList();
+
+            return teamViewModel;
         }
     }
 }

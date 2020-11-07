@@ -1,13 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Domain.Implementations;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebService.DomainImplementation;
+using WebService.Services;
 
 namespace WebService
 {
@@ -29,6 +28,15 @@ namespace WebService
             {
                 options.AutomaticAuthentication = true;
             });
+
+            services.AddMemoryCache();
+
+            services.AddScoped<ITeamCreator, TeamCreator>();
+
+            services.AddScoped<IUsersCollection, CachedUsersCollection>();
+
+            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<ITeamsService, TeamsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,13 +16,14 @@ namespace Domain.Models
 
         public override bool Equals(object obj)
         {
-            User instance = obj as User;
-            if(instance is null)
+            User otherInstance = obj as User;
+
+            if(otherInstance is null)
             {
                 return false;
             }
 
-            return this.userNameWithDomain == instance.userNameWithDomain;
+            return this.userNameWithDomain == otherInstance.userNameWithDomain;
         }
 
         public override int GetHashCode()

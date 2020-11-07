@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -7,18 +8,24 @@ using Domain.Implementations;
 using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using WebService.Models;
+using WebService.Services;
 
 namespace WebService.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
+        private readonly IUsersService usersService;
+        private readonly ITeamsService teamsService;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
+        public HomeController(ILogger<HomeController> logger, IUsersService usersService, ITeamsService teamsService)
+        {                                                     
             this.logger = logger;
+            this.usersService = usersService;
+            this.teamsService = teamsService;
         }
 
         public IActionResult Index()
@@ -36,12 +43,7 @@ namespace WebService.Controllers
 
         public IActionResult Teams()
         {
-            ITeamCreator teamCreator = new TeamCreator();
-            IUsersCollection users = new FakeUsersCollection();
-
-            var teams = teamCreator.Create(users.Get(), 2);
-
-            IEnumerable<TeamViewModel> teamViewModels = teams.Select(x => this.ToTeamViewModel(x));
+            var teamViewModels = this.teamsService.SplitUsersToGroup(4);
 
             return View(teamViewModels);
         }
@@ -49,6 +51,36 @@ namespace WebService.Controllers
         [HttpPost]
         public IActionResult Register()
         {
+            var user = WindowsIdentity.GetCurrent();
+
+            string userNameWithDomain = user.Name;
+
+            this.usersService.Add(userNameWithDomain);
+
+            return RedirectToAction(nameof(this.Index));
+        }
+
+        [HttpPost]
+        public IActionResult Unregister()
+        {
+            var user = WindowsIdentity.GetCurrent();
+
+            string userNameWithDomain = user.Name;
+
+            this.usersService.Remove(userNameWithDomain);
+
+            return RedirectToAction(nameof(this.Index));
+        }
+
+        [HttpDelete]
+        public IActionResult Unregister2()
+        {
+            var user = WindowsIdentity.GetCurrent();
+
+            string userNameWithDomain = user.Name;
+
+            this.usersService.Remove(userNameWithDomain);
+
             return RedirectToAction(nameof(this.Index));
         }
 
@@ -61,26 +93,6 @@ namespace WebService.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        private TeamViewModel ToTeamViewModel(Team team)
-        {
-            var teamViewModel = new TeamViewModel()
-            {
-                Name = team.Name
-            };
-
-            foreach (var user in team.Users)
-            {
-                UserViewModel userViewModel = new UserViewModel()
-                {
-                    Name = user.Name
-                };
-
-                teamViewModel.Users.Add(userViewModel);
-            }
-
-            return teamViewModel;
         }
     }
 }

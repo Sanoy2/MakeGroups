@@ -25,6 +25,11 @@ namespace Domain.Implementations
                 throw new ArgumentNullException(nameof(users));
             }
 
+            if(!users.Any())
+            {
+                return Enumerable.Empty<Team>();
+            }
+
             if(numberOfTeams > users.Count())
             {
                 numberOfTeams = users.Count();
