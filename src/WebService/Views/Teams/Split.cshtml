@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TeamViewModel>
+
+@{
+    ViewData["Title"] = "Teams page";
+}
+
+<div class="text-center">
+
+    <h2> Teams are below: </h2>
+
+    <div class="card-group">
+        @foreach (var team in @Model)
+        {
+        <div class="card">
+            <div class="card-header">Team: @team.Name</div>
+            <div class="card-body">
+                <div class="card-title"></div>
+                <div class="card-text">
+                    <ul class="list-group list-group-flush">
+                        @foreach (var user in team.Users)
+                        {
+                            <li class="list-group-item">@user.Name</li>
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+</div>

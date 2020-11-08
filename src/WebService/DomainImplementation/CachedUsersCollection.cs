@@ -59,6 +59,13 @@ namespace WebService.DomainImplementation
                 usersCollection = new HashSet<User>();
             }
 
+            usersCollection.Add(new User("domain\\John"));
+            usersCollection.Add(new User("domain\\Pablo"));
+            usersCollection.Add(new User("domain\\Skyler"));
+            usersCollection.Add(new User("domain\\Joey"));
+            usersCollection.Add(new User("domain\\Ross"));
+            usersCollection.Add(new User("domain\\Chandler"));
+
             return usersCollection;
         }
 

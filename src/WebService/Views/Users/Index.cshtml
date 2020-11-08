@@ -1,0 +1,31 @@
+﻿@model IEnumerable<UserViewModel>
+
+@{
+    ViewData["Title"] = "Users page";
+}
+
+<div class="text-center container ">
+    <div class="row">
+        <div class="col-sm">
+            <div>
+                <h2> Registered users: </h2>
+                <ul class="list-group">
+                    @foreach (var user in @Model)
+                    {
+
+                        <li class="list-group-item">@user.Name</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div>
+                <h2>Create teams</h2>
+                <form action="/Teams/Split/" method="get">
+                    <input name="groupsCount" type="number" value="3" min="1" max="12">
+                    <button type="submit">Make teams</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
