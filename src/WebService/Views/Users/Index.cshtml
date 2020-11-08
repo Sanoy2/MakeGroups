@@ -12,8 +12,14 @@
                 <ul class="list-group">
                     @foreach (var user in @Model)
                     {
-
-                        <li class="list-group-item">@user.Name</li>
+                        @if (user.IsHighlighted)
+                        {
+                            <li class="list-group-item list-group-item-success">@user.Name</li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item">@user.Name</li>
+                        }
                     }
                 </ul>
             </div>

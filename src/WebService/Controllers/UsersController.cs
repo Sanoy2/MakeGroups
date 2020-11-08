@@ -1,5 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
+using WebService.Models;
 using WebService.Services;
 
 namespace WebService.Controllers
@@ -19,7 +25,19 @@ namespace WebService.Controllers
 
         public IActionResult Index()
         {
-            var signedUsers = this.usersService.Get();
+            IEnumerable<UserViewModel> signedUsers = this.usersService.Get().ToList();
+
+            var user = WindowsIdentity.GetCurrent();
+
+            string userNameWithDomain = user.Name;
+
+            string userName = userNameWithDomain.Split('\\').Last();
+
+            var currentUserViewModel = signedUsers.FirstOrDefault(x => x.Name == userName);
+            if(currentUserViewModel != null)
+            {
+                currentUserViewModel.Highlight();
+            }
 
             return View(signedUsers);
         }

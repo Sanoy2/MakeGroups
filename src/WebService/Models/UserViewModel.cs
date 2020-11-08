@@ -6,6 +6,8 @@ namespace WebService.Models
     {
         public string Name { get; set; }
 
+        public bool IsHighlighted { get; set; }
+
         protected UserViewModel()
         {
 
@@ -21,6 +23,11 @@ namespace WebService.Models
             UserViewModel userViewModel = new UserViewModel(user.Name);
 
             return userViewModel;
+        }
+
+        public void Highlight()
+        {
+            this.IsHighlighted = true;
         }
     }
 }
