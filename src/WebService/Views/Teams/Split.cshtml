@@ -19,7 +19,14 @@
                     <ul class="list-group list-group-flush">
                         @foreach (var user in team.Users)
                         {
-                            <li class="list-group-item">@user.Name</li>
+                            @if (user.IsHighlighted)
+                            {
+                                <li class="list-group-item" style="background-color: #c3e6cb;">@user.Name</li>
+                            }
+                            else
+                            {
+                                <li class="list-group-item">@user.Name</li>
+                            }
 
                         }
                     </ul>
