@@ -7,11 +7,21 @@ namespace Domain.Models
         private string userNameWithDomain;
 
         public string Name => this.userNameWithDomain.Split('\\').Last();
+
         public string Domain => this.userNameWithDomain.Split('\\').First();
+
+        public string FullName { get; }
 
         public User(string name)
         {
             this.userNameWithDomain = name;
+            this.FullName = string.Empty;
+        }
+
+        public User(string userNameWithDomain, string fullName)
+        {
+            this.userNameWithDomain = userNameWithDomain;
+            this.FullName = fullName;
         }
 
         public override bool Equals(object obj)

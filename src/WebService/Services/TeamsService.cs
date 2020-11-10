@@ -20,13 +20,15 @@ namespace WebService.Services
 
         public IEnumerable<TeamViewModel> SplitUsersToGroup(int numberOfTeams)
         {
-            var users = this.usersService.Get();
+            //var users = this.usersService.Get();
 
-            var teams = this.teamCreator.Create(users, numberOfTeams);
+            //var teams = this.teamCreator.Create(users, numberOfTeams);
 
-            var teamsModels = teams.Select(x => TeamViewModel.FromTeam(x));
+            //var teamsModels = teams.Select(x => TeamViewModel.FromTeam(x));
 
-            return teamsModels;
+            //return teamsModels;
+
+            throw new NotImplementedException();
         }
     }
 }

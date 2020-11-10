@@ -7,13 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5C5966C9-0CB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "src\WebService\WebService.csproj", "{6A8BF55E-7432-4AFB-8F9E-B2ABD0E357B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{2237F199-B700-47D8-96DF-BBC8B462EBD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{2237F199-B700-47D8-96DF-BBC8B462EBD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainTests", "tests\DomainTests\DomainTests.csproj", "{22FFC6DF-7B85-448A-B1DE-C76240EFE671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainTests", "tests\DomainTests\DomainTests.csproj", "{22FFC6DF-7B85-448A-B1DE-C76240EFE671}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonUtilsToolsHelperManager", "src\CommonUtilsToolsHelperManager\CommonUtilsToolsHelperManager.csproj", "{9B419F5F-52A0-47FB-AA7B-9A50697C512B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtilsToolsHelperManager", "src\CommonUtilsToolsHelperManager\CommonUtilsToolsHelperManager.csproj", "{9B419F5F-52A0-47FB-AA7B-9A50697C512B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8F3BEC48-FF90-4B02-8E4D-EA05700D0352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonUtilsToolsHelperManagerTests", "tests\CommonUtilsToolsHelperManagerTests\CommonUtilsToolsHelperManagerTests.csproj", "{33EE91A6-3264-4E83-B615-3AA2EB985E50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,18 @@ Global
 		{9B419F5F-52A0-47FB-AA7B-9A50697C512B}.Release|x64.Build.0 = Release|Any CPU
 		{9B419F5F-52A0-47FB-AA7B-9A50697C512B}.Release|x86.ActiveCfg = Release|Any CPU
 		{9B419F5F-52A0-47FB-AA7B-9A50697C512B}.Release|x86.Build.0 = Release|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Debug|x64.Build.0 = Debug|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Debug|x86.Build.0 = Debug|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Release|x64.ActiveCfg = Release|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Release|x64.Build.0 = Release|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Release|x86.ActiveCfg = Release|Any CPU
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +96,7 @@ Global
 		{2237F199-B700-47D8-96DF-BBC8B462EBD2} = {5C5966C9-0CBA-4323-9181-42C28D9AFF76}
 		{22FFC6DF-7B85-448A-B1DE-C76240EFE671} = {8F3BEC48-FF90-4B02-8E4D-EA05700D0352}
 		{9B419F5F-52A0-47FB-AA7B-9A50697C512B} = {5C5966C9-0CBA-4323-9181-42C28D9AFF76}
+		{33EE91A6-3264-4E83-B615-3AA2EB985E50} = {8F3BEC48-FF90-4B02-8E4D-EA05700D0352}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2317504D-A991-4E1E-8E01-899E42B72E83}
