@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtilsToolsHelperManag
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8F3BEC48-FF90-4B02-8E4D-EA05700D0352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonUtilsToolsHelperManagerTests", "tests\CommonUtilsToolsHelperManagerTests\CommonUtilsToolsHelperManagerTests.csproj", "{33EE91A6-3264-4E83-B615-3AA2EB985E50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonUtilsToolsHelperManagerTests", "tests\CommonUtilsToolsHelperManagerTests\CommonUtilsToolsHelperManagerTests.csproj", "{33EE91A6-3264-4E83-B615-3AA2EB985E50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

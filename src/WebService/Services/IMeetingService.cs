@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WebService.Models;
 
 namespace WebService.Services
@@ -6,5 +7,7 @@ namespace WebService.Services
     public interface IMeetingService
     {
         IEnumerable<MeetingViewModel> Get();
+
+        ParticipantsViewModel Participants(Guid meetingId);
     }
 }

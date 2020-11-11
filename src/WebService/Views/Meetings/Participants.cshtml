@@ -1,0 +1,24 @@
+﻿@model ParticipantsViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1>@Model.MeetingName</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <table class="table">
+                <tbody>
+                    @foreach (var participant in Model.Participants)
+                    {
+                        <tr>
+                            <td>@participant.Name</td>
+                            <td>Otto</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

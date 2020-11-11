@@ -1,8 +1,8 @@
 ﻿using Domain.Interfaces;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebService.Models;
 
 namespace WebService.Services
@@ -25,6 +25,25 @@ namespace WebService.Services
             });
 
             return meetingsVM;
+        }
+
+        public ParticipantsViewModel Participants(Guid meetingId)
+        {
+            List<ParticipantViewModel> participants = new List<ParticipantViewModel>();
+
+            Meeting meeting = this.bunchOfMeetings.Get(meetingId);
+            if (meeting is null)
+            {
+                throw new ArgumentException($"Meeting with id {@meetingId} does not exis");
+            }
+
+            participants.AddRange(meeting.Leaders.Select(x => new LeaderViewModel(x.Name)));
+            participants.AddRange(meeting.Members.Select(x => new MemberViewModel(x.Name)));
+
+            ParticipantsViewModel viewModel = new ParticipantsViewModel(meeting.Name, meeting.Id);
+            viewModel.Participants = participants;
+
+            return viewModel;
         }
     }
 }
