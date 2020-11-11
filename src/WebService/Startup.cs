@@ -34,9 +34,11 @@ namespace WebService
             services.AddScoped<ITeamCreator, TeamCreator>();
 
             services.AddScoped<IUsersCollection, CachedUsersCollection>();
+            services.AddScoped<IBunchOfMeetings, CachedBunchOfMeetings>();
 
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<ITeamsService, TeamsService>();
+            services.AddScoped<IMeetingService, MeetingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
