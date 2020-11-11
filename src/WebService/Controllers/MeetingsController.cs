@@ -28,5 +28,19 @@ namespace WebService.Controllers
             var viewModel = this.meetingService.Participants(meetingId);
             return View(viewModel);
         }
+
+        [HttpGet]
+        public IActionResult MeetingCreation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(string meetingName)
+        {
+            this.meetingService.Create(meetingName);
+
+            return RedirectToAction("Index");
+        }
     }
 }

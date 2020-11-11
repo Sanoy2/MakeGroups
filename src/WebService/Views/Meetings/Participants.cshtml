@@ -12,10 +12,20 @@
                 <tbody>
                     @foreach (var participant in Model.Participants)
                     {
-                        <tr>
-                            <td>@participant.Name</td>
-                            <td>Otto</td>
-                        </tr>
+                        @if (participant.IsLeader)
+                        {
+                            <tr style="background-color: azure">
+                                <td>@participant.Name</td>
+                                <td><button class="btn btn-warning" style="float: right">Unlead</button></td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>@participant.Name</td>
+                                <td><button class="btn btn-primary" style="float: right">Lead</button></td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>

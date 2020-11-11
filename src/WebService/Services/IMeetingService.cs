@@ -9,5 +9,7 @@ namespace WebService.Services
         IEnumerable<MeetingViewModel> Get();
 
         ParticipantsViewModel Participants(Guid meetingId);
+
+        void Create(string meetingName);
     }
 }

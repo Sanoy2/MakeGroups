@@ -15,6 +15,18 @@ namespace WebService.Services
         {
             this.bunchOfMeetings = meetings;
         }
+
+        public void Create(string meetingName)
+        {
+            if (string.IsNullOrWhiteSpace(meetingName))
+            {
+                throw new ArgumentNullException(nameof(meetingName));
+            }
+
+            Meeting meeting = new Meeting(meetingName);
+            this.bunchOfMeetings.Add(meeting);
+        }
+
         public IEnumerable<MeetingViewModel> Get()
         {
             var meetingsVM = this.bunchOfMeetings.Get().Select(x => new MeetingViewModel()

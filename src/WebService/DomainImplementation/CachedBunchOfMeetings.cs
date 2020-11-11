@@ -65,7 +65,13 @@ namespace WebService.DomainImplementation
             if (meetings is null)
             {
                 meetings = new HashSet<Meeting>();
-                meetings.Add(new Meeting("Default"));
+                var meeting = new Meeting("Game of Thrones");
+                meeting.AddMember(new User("DOMAIN\\Tyrion"));
+                meeting.AddLeader(new User("DOMAIN\\Joffrey"));
+                meeting.AddMember(new User("DOMAIN\\Cersei"));
+                meeting.AddMember(new User("DOMAIN\\Varys"));
+
+                meetings.Add(meeting);
                 this.Save(meetings);
             }
 

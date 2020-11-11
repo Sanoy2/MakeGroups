@@ -3,7 +3,8 @@
 <div class="container">
     <div class="row">
         <div class="col=sm">
-            <p>Choose existing team or <a>create a new one</a></p>
+            <h4>Choose existing team or 
+            <a class="btn btn-outline-primary" asp-area="" asp-controller="Meetings" asp-action="MeetingCreation">create a new one</a></h4>
         </div>
     </div>
     <div class="row">
@@ -16,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var meeting in @Model)
+                    @foreach (var meeting in @Model.OrderByDescending(x => x.Created))
                     {
                     <tr>
                         <td>@meeting.Name</td>
@@ -29,7 +30,6 @@
                                asp-route-meetingId="@meeting.Id">Show participants</a>
                         </td>
                         <td><button class="btn btn-success">Join</button></td>
-
                     </tr>
                     }
                 </tbody>
