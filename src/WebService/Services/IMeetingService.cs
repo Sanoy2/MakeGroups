@@ -6,7 +6,7 @@ namespace WebService.Services
 {
     public interface IMeetingService
     {
-        IEnumerable<MeetingViewModel> Get();
+        IEnumerable<MeetingViewModel> Get(string executingUser);
 
         ParticipantsViewModel Participants(Guid meetingId);
 

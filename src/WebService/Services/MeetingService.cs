@@ -41,13 +41,16 @@ namespace WebService.Services
             this.bunchOfMeetings.Add(meeting);
         }
 
-        public IEnumerable<MeetingViewModel> Get()
+        public IEnumerable<MeetingViewModel> Get(string executingUser)
         {
+            User user = new User(executingUser);
+
             var meetingsVM = this.bunchOfMeetings.Get().Select(x => new MeetingViewModel()
             {
                 Created = x.CreateDate,
                 Id = x.Id,
-                Name = x.Name
+                Name = x.Name,
+                ExecutingUserParticipates = x.Leaders.Contains(user) || x.Members.Contains(user)
             });
 
             return meetingsVM;

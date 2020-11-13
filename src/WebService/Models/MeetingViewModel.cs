@@ -12,5 +12,7 @@ namespace WebService.Models
         public string Name { get; set; }
 
         public DateTime Created { get; set; }
+
+        public bool ExecutingUserParticipates { get; set; }
     }
 }

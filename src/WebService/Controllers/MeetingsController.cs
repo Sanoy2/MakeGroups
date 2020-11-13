@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using WebService.Commands;
+using WebService.Models;
 using WebService.Services;
 
 namespace WebService.Controllers
@@ -18,7 +20,9 @@ namespace WebService.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var meetings = this.meetingService.Get();
+            string executingUsername = this.User.Identity.Name;
+
+            IEnumerable<MeetingViewModel> meetings = this.meetingService.Get(executingUsername);
 
             return View(meetings);
         }

@@ -3,8 +3,10 @@
 <div class="container">
     <div class="row">
         <div class="col=sm">
-            <h4>Choose existing team or 
-            <a class="btn btn-outline-secondary" asp-area="" asp-controller="Meetings" asp-action="MeetingCreation">create a new one</a></h4>
+            <h4>
+                Choose existing team or
+                <a class="btn btn-outline-secondary" asp-area="" asp-controller="Meetings" asp-action="MeetingCreation">create a new one</a>
+            </h4>
         </div>
     </div>
     <div class="row">
@@ -20,27 +22,37 @@
                 <tbody>
                     @foreach (var meeting in @Model.OrderByDescending(x => x.Created))
                     {
-                    <tr>
-                        <td>@meeting.Name</td>
-                        <td>@meeting.Id</td>
-                        <td>@meeting.Created.ToLocalTime()</td>
-                        <td>
-                            <a class="btn btn-primary"
-                               asp-area=""
-                               asp-controller="Meetings"
-                               asp-action="Participants"
-                               asp-route-meetingId="@meeting.Id">Show participants</a>
-                        </td>
-                        <td>
-                            @using (Html.BeginForm("Join", "Meetings", new { meetingId = meeting.Id }, FormMethod.Post))
-                            {
-                                <button class="btn btn-success">Join</button>
-                            }
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@meeting.Name</td>
+                            <td>@meeting.Id</td>
+                            <td>@meeting.Created.ToLocalTime()</td>
+                            <td>
+                                <a class="btn btn-primary"
+                                   asp-area=""
+                                   asp-controller="Meetings"
+                                   asp-action="Participants"
+                                   asp-route-meetingId="@meeting.Id">Show participants</a>
+                            </td>
+                            <td>
+                                @if (meeting.ExecutingUserParticipates)
+                                {
+                                    @using (Html.BeginForm("Leave", "Meetings", new { meetingId = meeting.Id }, FormMethod.Post))
+                                    {
+                                        <button class="btn btn-danger">Leave</button>
+                                    }
+                                }
+                                else
+                                {
+                                    @using (Html.BeginForm("Join", "Meetings", new { meetingId = meeting.Id }, FormMethod.Post))
+                                    {
+                                        <button class="btn btn-success">Join</button>
+                                    }
+                                }
+                            </td>
+                        </tr>
                     }
                 </tbody>
-                </table>
+            </table>
         </div>
     </div>
 </div>
