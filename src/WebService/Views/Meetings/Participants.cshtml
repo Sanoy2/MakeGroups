@@ -17,7 +17,11 @@
                             <tr style="background-color: azure">
                                 <td>@participant.Name</td>
                                 <td>
-                                    @using (Html.BeginForm("Join", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+                                    @using (Html.BeginForm(
+                                         "JoinAsMember", 
+                                         "Meetings", 
+                                         new { MeetingId = Model.MeetingId, UserId = participant.Id }, 
+                                         FormMethod.Post))
                                     {
                                         <button class="btn btn-warning" style="float: right">Unlead</button>
                                     }
@@ -29,7 +33,11 @@
                             <tr>
                                 <td>@participant.Name</td>
                                 <td>
-                                    @using (Html.BeginForm("JoinAsLeader", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+                                    @using (Html.BeginForm(
+                                         "JoinAsLeader", 
+                                         "Meetings", 
+                                         new { MeetingId = Model.MeetingId, UserId = participant.Id }, 
+                                         FormMethod.Post))
                                     {
                                         <button class="btn btn-primary" style="float: right">Lead</button>
                                     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading;
+using WebService.Commands;
 using WebService.Services;
 
 namespace WebService.Controllers
@@ -53,12 +54,19 @@ namespace WebService.Controllers
         }
 
         [HttpPost]
-        public IActionResult JoinAsLeader(Guid meetingId)
+        public IActionResult JoinAsMember(JoinMeeting command)
         {
-            string username = this.User.Identity.Name;
-            this.meetingService.JoinAsLeader(meetingId, username);
+            this.meetingService.JoinAsMember(command.MeetingId, command.UserId);
 
-            return RedirectToAction("Participants", new { meetingId = meetingId });
+            return RedirectToAction("Participants", new { meetingId = command.MeetingId });
+        }
+
+        [HttpPost]
+        public IActionResult JoinAsLeader(JoinMeeting command)
+        {
+            this.meetingService.JoinAsLeader(command.MeetingId, command.UserId);
+
+            return RedirectToAction("Participants", new { meetingId = command.MeetingId });
         }
 
         [HttpPost]

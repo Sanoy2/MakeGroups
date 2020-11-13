@@ -21,7 +21,7 @@ namespace Domain.Models
         public Team(User leader) : this()
         {
             this.Leader = leader;
-            this.Name = $"{leader.FullName}'s team";
+            this.Name = $"{leader.Name}'s team";
         }
 
         public Team(string teamName, User leader) : this()

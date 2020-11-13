@@ -12,18 +12,18 @@ namespace Domain.Models
 
         public string Id => this.userNameWithDomain;
 
-        public string FullName { get; }
+        private string fullName;
 
         public User(string userNameWithDomain)
         {
             this.userNameWithDomain = userNameWithDomain;
-            this.FullName = string.Empty;
+            this.fullName = string.Empty;
         }
 
         public User(string userNameWithDomain, string fullName)
         {
             this.userNameWithDomain = userNameWithDomain;
-            this.FullName = fullName;
+            this.fullName = fullName;
         }
 
         public override bool Equals(object obj)
