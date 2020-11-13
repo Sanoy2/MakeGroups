@@ -4,14 +4,21 @@
     <div class="row">
         <div class="col-sm">
             <h1>@Model.MeetingName</h1>
-            @{
-                await Html.RenderPartialAsync("SomePartial");
-            }
         </div>
-        <div class="col-sm-1" style="float: right">
-            @using (Html.BeginForm("ArrangeTeams", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+        <div class="col-sm-2" style="float: right">
+            @if (Model.Teams.Any())
             {
-                <button class="btn btn-outline-success" style="float: right">ArrangeTeams</button>
+                @using (Html.BeginForm("ArrangeTeams", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+                {
+                    <button class="btn btn-outline-warning" style="float: right">Rearrange teams</button>
+                }
+            }
+            else
+            {
+                @using (Html.BeginForm("ArrangeTeams", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+                {
+                    <button class="btn btn-outline-success" style="float: right">Arrange teams</button>
+                }
             }
         </div>
         <div class="col-sm-1" style="float: right">
@@ -36,6 +43,7 @@
     }
     <div class="row">
         <div class="col-sm">
+            <h6>Signed users:</h6>
             <table class="table">
                 <tbody>
                     @foreach (var participant in Model.Participants)
