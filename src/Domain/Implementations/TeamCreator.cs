@@ -27,6 +27,11 @@ namespace Domain.Implementations
                 throw new ArgumentException("Leader cannot be a member in the same time!");
             }
 
+            if(leaders.Any() == false)
+            {
+                return Enumerable.Empty<Team>();
+            }
+
             List<Team> teams = new List<Team>();
             foreach (var leader in leaders)
             {
