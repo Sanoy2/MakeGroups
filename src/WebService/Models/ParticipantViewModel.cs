@@ -9,6 +9,6 @@ namespace WebService.Models
     {
         public bool IsLeader { get; set; }
 
-        public ParticipantViewModel(string name) : base(name) { }
+        public ParticipantViewModel(string name, string id) : base(name, id) { }
     }
 }

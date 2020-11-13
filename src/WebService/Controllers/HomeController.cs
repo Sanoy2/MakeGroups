@@ -18,50 +18,20 @@ namespace WebService.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
-        private readonly IUsersService usersService;
 
-        public HomeController(ILogger<HomeController> logger, IUsersService usersService)
+        public HomeController(ILogger<HomeController> logger)
         {                                                     
             this.logger = logger;
-            this.usersService = usersService;
         }
 
         public IActionResult Index()
         {
-            var current = WindowsIdentity.GetCurrent();
-
-            var message = $"Name: {current.Name.ToString()}";
-
-            this.logger.LogInformation(message);
-
-            UserViewModel user = new UserViewModel(current.Name);
-
-            return View(user);
-        }
-
-        [HttpPost]
-        public IActionResult Register()
-        {
-            var user = WindowsIdentity.GetCurrent();
-
-            string userNameWithDomain = user.Name;
-
-            this.usersService.Add(userNameWithDomain);
-
-            return RedirectToAction("Index", "Users");
-        }
-
-        [HttpPost]
-        public IActionResult Unregister()
-        {
-            var user = WindowsIdentity.GetCurrent();
-
-            string userNameWithDomain = user.Name;
-
-            this.usersService.Remove(userNameWithDomain);
+            string username = this.User.Identity.Name;
+            this.logger.LogInformation($"Caller: {username}");
 
             return View();
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -10,11 +10,13 @@ namespace Domain.Models
 
         public string Domain => this.userNameWithDomain.Split('\\').First();
 
+        public string Id => this.userNameWithDomain;
+
         public string FullName { get; }
 
-        public User(string name)
+        public User(string userNameWithDomain)
         {
-            this.userNameWithDomain = name;
+            this.userNameWithDomain = userNameWithDomain;
             this.FullName = string.Empty;
         }
 

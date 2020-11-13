@@ -36,6 +36,8 @@ namespace WebService
             services.AddScoped<IUsersCollection, CachedUsersCollection>();
             services.AddScoped<IBunchOfMeetings, CachedBunchOfMeetings>();
 
+            services.AddScoped<IUserFactory, UserFactory>();
+
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<ITeamsService, TeamsService>();
             services.AddScoped<IMeetingService, MeetingService>();

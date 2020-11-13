@@ -11,5 +11,11 @@ namespace WebService.Services
         ParticipantsViewModel Participants(Guid meetingId);
 
         void Create(string meetingName);
+
+        void JoinAsMember(Guid meetingId, string userNameWithDomain);
+
+        void JoinAsLeader(Guid meetingId, string userNameWithDomain);
+
+        void Leave(Guid meetingId, string userNameWithDomain);
     }
 }

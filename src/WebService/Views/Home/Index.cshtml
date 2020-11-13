@@ -1,5 +1,4 @@
-﻿@model WebService.Models.UserViewModel
-
+﻿
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,20 +8,7 @@
 
     <div class="container">
         <div class="row" style="padding-top: 6em">
-            <div class="col-sm"></div>
-            <div class="col col-sm-2">
-                @using (Html.BeginForm("Unregister", "Home", FormMethod.Post))
-                {
-                    <button class="btn btn-danger">Sign out</button>
-                }
-            </div>
-            <div class="col col-sm-2">
-                @using (Html.BeginForm("Register", "Home", new { Name = Model.Name }, FormMethod.Post))
-                {
-                    <button class="btn btn-success">Sign in</button>
-                }
-            </div>
-            <div class="col-sm"></div>
+            <div class="col-sm"><h1>Hello hello</h1></div>
         </div>
         </div>
 

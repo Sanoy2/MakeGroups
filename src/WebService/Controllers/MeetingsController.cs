@@ -42,5 +42,32 @@ namespace WebService.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult Join(Guid meetingId)
+        {
+            string username = this.User.Identity.Name;
+            this.meetingService.JoinAsMember(meetingId, username);
+
+            return RedirectToAction("Participants", new { meetingId = meetingId});
+        }
+
+        [HttpPost]
+        public IActionResult JoinAsLeader(Guid meetingId)
+        {
+            string username = this.User.Identity.Name;
+            this.meetingService.JoinAsLeader(meetingId, username);
+
+            return RedirectToAction("Participants", new { meetingId = meetingId });
+        }
+
+        [HttpPost]
+        public IActionResult Leave(Guid meetingId)
+        {
+            string username = this.User.Identity.Name;
+            this.meetingService.Leave(meetingId, username);
+
+            return RedirectToAction("Index");
+        }
     }
 }

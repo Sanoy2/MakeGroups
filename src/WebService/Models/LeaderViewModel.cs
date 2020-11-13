@@ -7,7 +7,7 @@ namespace WebService.Models
 {
     public class LeaderViewModel : ParticipantViewModel
     {
-        public LeaderViewModel(string name) : base(name)
+        public LeaderViewModel(string name, string id) : base(name, id)
         {
             this.IsLeader = true;
         }
