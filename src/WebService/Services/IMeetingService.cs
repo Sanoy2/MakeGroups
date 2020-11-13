@@ -17,5 +17,9 @@ namespace WebService.Services
         void JoinAsLeader(Guid meetingId, string userNameWithDomain);
 
         void Leave(Guid meetingId, string userNameWithDomain);
+
+        void ArrangeTeams(Guid meetingId);
+
+        void ClearTeams(Guid meetingId);
     }
 }

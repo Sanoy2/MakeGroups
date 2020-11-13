@@ -15,7 +15,7 @@ namespace Domain.Models
 
         private IEnumerable<Team> teams;
 
-        public IEnumerable<Team> Teams => this.teams is null ? this.teams : this.ArrangeTeams();
+        public IEnumerable<Team> Teams => this.teams is null ? Enumerable.Empty<Team>() : this.teams;
 
         public IEnumerable<User> Members => this.members.ToList();
 
@@ -72,6 +72,11 @@ namespace Domain.Models
             this.teams = teams;
 
             return teams.ToList();
+        }
+
+        public void ClearTeams()
+        {
+            this.teams = Enumerable.Empty<Team>();
         }
 
         public override int GetHashCode()

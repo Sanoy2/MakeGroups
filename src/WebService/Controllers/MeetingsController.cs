@@ -77,5 +77,13 @@ namespace WebService.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult ArrangeTeams(Guid meetingId)
+        {
+            this.meetingService.ArrangeTeams(meetingId);
+
+            return RedirectToAction("Participants", new { meetingId = meetingId });
+        }
     }
 }

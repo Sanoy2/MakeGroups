@@ -7,6 +7,8 @@ namespace WebService.Models
     {
         public List<ParticipantViewModel> Participants { get; set; }
 
+        public List<TeamViewModel> Teams { get; set; }
+
         public string MeetingName { get; set; }
 
         public Guid MeetingId { get; set; }

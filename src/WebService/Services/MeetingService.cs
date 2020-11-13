@@ -18,6 +18,18 @@ namespace WebService.Services
             this.userFactory = userFactory;
         }
 
+        public void ArrangeTeams(Guid meetingId)
+        {
+            Meeting meeting = this.bunchOfMeetings.Get(meetingId);
+            meeting.ArrangeTeams();
+        }
+
+        public void ClearTeams(Guid meetingId)
+        {
+            Meeting meeting = this.bunchOfMeetings.Get(meetingId);
+            meeting.ClearTeams();
+        }
+
         public void Create(string meetingName)
         {
             if (string.IsNullOrWhiteSpace(meetingName))
@@ -77,6 +89,8 @@ namespace WebService.Services
 
             ParticipantsViewModel viewModel = new ParticipantsViewModel(meeting.Name, meeting.Id);
             viewModel.Participants = participants;
+
+            viewModel.Teams = meeting.Teams.Select(x => TeamViewModel.FromTeam(x)).ToList();
 
             return viewModel;
         }
