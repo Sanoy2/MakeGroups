@@ -40,9 +40,9 @@ namespace Domain.Implementations
             {
                 foreach (var team in teams)
                 {
-                    if(members.Any())
+                    if(membersCopy.Any())
                     {
-                        User member = members.Random();
+                        User member = membersCopy.Random();
                         membersCopy.Remove(member);
 
                         team.Add(member);
