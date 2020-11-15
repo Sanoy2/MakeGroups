@@ -1,0 +1,25 @@
+﻿@model IEnumerable<TeamViewModel> 
+
+<div class="row" style="padding-bottom: 3em">
+    <div class="col-sm">
+        <div class="card-group">
+            @foreach (var team in Model)
+            {
+                <div class="card">
+                    <div class="card-header">Team: @team.Name</div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" style="background-color: azure;">@team.Leader.Name</li>
+                                @foreach (var user in team.Users)
+                                {
+                                    <li class="list-group-item">@user.Name</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -6,6 +6,8 @@ namespace WebService.Models
     {
         public string Name { get; set; }
 
+        public string Id { get; set; }
+
         public bool IsHighlighted { get; set; }
 
         protected UserViewModel()
@@ -13,14 +15,15 @@ namespace WebService.Models
 
         }
 
-        public UserViewModel(string name)
+        public UserViewModel(string name, string id)
         {
             this.Name = name;
+            this.Id = id;
         }
 
         public static UserViewModel FromUser(User user)
         {
-            UserViewModel userViewModel = new UserViewModel(user.Name);
+            UserViewModel userViewModel = new UserViewModel(user.Name, user.Id);
 
             return userViewModel;
         }

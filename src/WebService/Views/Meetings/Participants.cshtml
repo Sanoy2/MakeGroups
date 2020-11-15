@@ -1,0 +1,88 @@
+﻿@model ParticipantsViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1>@Model.MeetingName</h1>
+        </div>
+        <div class="col-sm-2" style="float: right">
+            @if (Model.Teams.Any())
+            {
+                @using (Html.BeginForm("ArrangeTeams", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+                {
+                    <button class="btn btn-outline-warning" style="float: right">Rearrange teams</button>
+                }
+            }
+            else
+            {
+                @using (Html.BeginForm("ArrangeTeams", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+                {
+                    <button class="btn btn-outline-success" style="float: right">Arrange teams</button>
+                }
+            }
+        </div>
+        <div class="col-sm-1" style="float: right">
+            @if (Model.Participants.Any(x => x.Id == User.Identity.Name))
+            {
+                @using (Html.BeginForm("Leave", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+                {
+                    <button class="btn btn-danger" style="float: right">Leave</button>
+                }
+            }
+            else
+            {
+                @using (Html.BeginForm("Join", "Meetings", new { meetingId = Model.MeetingId }, FormMethod.Post))
+                {
+                    <button class="btn btn-success" style="float: right">Join</button>
+                }
+            }
+        </div>
+    </div>
+    @{ 
+        await Html.RenderPartialAsync("Teams", Model.Teams);
+    }
+    <div class="row">
+        <div class="col-sm">
+            <h6>Signed users:</h6>
+            <table class="table">
+                <tbody>
+                    @foreach (var participant in Model.Participants)
+                    {
+                        @if (participant.IsLeader)
+                        {
+                            <tr style="background-color: azure">
+                                <td>@participant.Name</td>
+                                <td>
+                                    @using (Html.BeginForm(
+                                         "JoinAsMember", 
+                                         "Meetings", 
+                                         new { MeetingId = Model.MeetingId, UserId = participant.Id }, 
+                                         FormMethod.Post))
+                                    {
+                                        <button class="btn btn-warning" style="float: right">Unlead</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>@participant.Name</td>
+                                <td>
+                                    @using (Html.BeginForm(
+                                         "JoinAsLeader", 
+                                         "Meetings", 
+                                         new { MeetingId = Model.MeetingId, UserId = participant.Id }, 
+                                         FormMethod.Post))
+                                    {
+                                        <button class="btn btn-primary" style="float: right">Lead</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

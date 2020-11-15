@@ -4,66 +4,54 @@ using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Domain.Implementations
 {
     public class TeamCreator : ITeamCreator
     {
-        private string[] greekLetters = new string[] { "α", "β", "γ", "δ", "ε", "θ", "λ", "ξ", "π", "φ", "ψ", "ω"};
-
-        private Random random;
-
-        public TeamCreator()
+        public IEnumerable<Team> Create(IEnumerable<User> leaders, IEnumerable<User> members)
         {
-            this.random = new Random();
-        }
-
-        public IEnumerable<Team> Create(IEnumerable<User> users, int numberOfTeams)
-        {
-            if(users is null)
+            if(leaders is null)
             {
-                throw new ArgumentNullException(nameof(users));
+                throw new ArgumentNullException(nameof(leaders));
             }
 
-            if(!users.Any())
+            if (members is null)
+            {
+                throw new ArgumentNullException(nameof(members));
+            }
+
+            if (leaders.AnyElementInBothCollections(members))
+            {
+                throw new ArgumentException("Leader cannot be a member in the same time!");
+            }
+
+            if(leaders.Any() == false)
             {
                 return Enumerable.Empty<Team>();
             }
 
-            if(numberOfTeams > users.Count())
+            List<Team> teams = new List<Team>();
+            foreach (var leader in leaders)
             {
-                numberOfTeams = users.Count();
+                Team team = new Team(leader);
+                teams.Add(team);
             }
 
-            if(numberOfTeams < 1)
+            var membersCopy = members.ToList();
+
+            while(membersCopy.Any())
             {
-                throw new ArgumentException($"You cannot create fewer than 1 team!");
-            }
-
-            if(numberOfTeams > this.greekLetters.Length)
-            {
-                throw new ArgumentException($"You can create not more than {this.greekLetters.Length} teams!");
-            }
-
-            var teams = new List<Team>();
-
-            for (int i = 0; i < numberOfTeams; i++)
-            {
-                teams.Add(new Team(this.greekLetters[i]));
-            }
-
-            var usersCopy = users.ToList();
-
-            while(usersCopy.Any())
-            {
-                for (int i = 0; i < numberOfTeams && usersCopy.Any(); i++)
+                foreach (var team in teams)
                 {
-                    var user = usersCopy.Random();
+                    if(membersCopy.Any())
+                    {
+                        User member = membersCopy.Random();
+                        membersCopy.Remove(member);
 
-                    usersCopy.Remove(user);
-
-                    Team team = teams[i];
-                    team.Add(user);
+                        team.Add(member);
+                    }
                 }
             }
 

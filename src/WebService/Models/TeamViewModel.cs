@@ -10,6 +10,8 @@ namespace WebService.Models
 
         public IList<UserViewModel> Users { get; set; }
 
+        public UserViewModel Leader { get; set; }
+
         public TeamViewModel()
         {
             this.Users = new List<UserViewModel>();
@@ -20,6 +22,8 @@ namespace WebService.Models
             TeamViewModel teamViewModel = new TeamViewModel();
 
             teamViewModel.Name = team.Name;
+
+            teamViewModel.Leader = UserViewModel.FromUser(team.Leader);
 
             teamViewModel.Users = team.Users.Select(x => UserViewModel.FromUser(x)).ToList();
 

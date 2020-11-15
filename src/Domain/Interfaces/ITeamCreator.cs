@@ -5,6 +5,6 @@ namespace Domain.Interfaces
 {
     public interface ITeamCreator
     {
-        IEnumerable<Team> Create(IEnumerable<User> users, int numberOfTeams);
+        IEnumerable<Team> Create(IEnumerable<User> leaders, IEnumerable<User> members);
     }
 }

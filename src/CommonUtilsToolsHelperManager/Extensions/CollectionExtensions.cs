@@ -21,5 +21,25 @@ namespace CommonUtilsToolsHelperManager.Extensions
 
             return element;
         }
+
+        public static bool AnyElementInBothCollections<T>(this IEnumerable<T> collection1, IEnumerable<T> collection2)
+        {
+            if(collection1 is null)
+            {
+                throw new ArgumentNullException(nameof(collection1));
+            }
+
+            if (collection2 is null)
+            {
+                throw new ArgumentNullException(nameof(collection2));
+            }
+
+            if(!collection1.Any() || !collection2.Any())
+            {
+                return false;
+            }
+
+            return collection1.Intersect(collection2).Any();
+        }
     }
 }

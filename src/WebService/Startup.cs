@@ -34,9 +34,13 @@ namespace WebService
             services.AddScoped<ITeamCreator, TeamCreator>();
 
             services.AddScoped<IUsersCollection, CachedUsersCollection>();
+            services.AddScoped<IBunchOfMeetings, CachedBunchOfMeetings>();
+
+            services.AddScoped<IUserFactory, UserFactory>();
 
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<ITeamsService, TeamsService>();
+            services.AddScoped<IMeetingService, MeetingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +67,7 @@ namespace WebService
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Meetings}/{action=Index}/{id?}");
             });
         }
     }
