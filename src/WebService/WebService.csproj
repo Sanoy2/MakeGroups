@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Copyright>Krzysztof Tomków</Copyright>
+    <PackageLicenseExpression>MIT License</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ktomkow/MakeGroups</PackageProjectUrl>
+    <RepositoryType></RepositoryType>
+    <RepositoryUrl>https://github.com/ktomkow/MakeGroups</RepositoryUrl>
+    <Authors>Krzysztof Tomków</Authors>
+    <PackageId>MakeGroupsWebService</PackageId>
+    <Company></Company>
+    <Product>Krzysztof Tomków</Product>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
