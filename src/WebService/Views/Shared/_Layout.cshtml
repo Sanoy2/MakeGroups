@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/teams.css" />
+    <script src="~/lib/fontawesome-free/css/all.css"></script>
 
 </head>
 <body>
@@ -36,12 +37,17 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - Krzysztof Tomków
+            <span>&copy; 2020 - Krzysztof Tomków</span> 
+            <span style="float: right">
+                <a href="https://github.com/ktomkow/MakeGroups" class="btn btn-outline-secondary">
+                <i class="fab fa-github" style="font-size: 1.5em"></i> See on GitHub</a>
+            </span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/fontawesome-free/js/all.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
