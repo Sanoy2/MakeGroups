@@ -26,8 +26,8 @@
   1. Create application pool for the application and choose option Runtime version: No managed code.
   1. Add web site under newly created pool, choose a path to the application and change Port to a free one that you want the application to use.
   1. Open Authentication options of the application and set:
-    * Windows authentication ENABLED
-    * All other authentication options DISABLED
+    1. Windows authentication ENABLED
+    1. All other authentication options DISABLED
   1. Application should be running (if it is not running try starting/restarting it)
   
   ## License
